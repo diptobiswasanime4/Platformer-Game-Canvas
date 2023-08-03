@@ -39,6 +39,7 @@ class Player {
     } else {
       this.velY = 0;
     }
+    this.x += this.velX;
     this.draw();
   }
 }
@@ -53,3 +54,26 @@ function animate() {
 }
 
 animate();
+
+addEventListener("keydown", (e) => {
+  switch (e.key) {
+    case "d":
+      player.velX = 5;
+      break;
+    case "a":
+      player.velX = -5;
+      break;
+  }
+});
+
+addEventListener("keyup", (e) => {
+  console.log(e.key);
+  switch (e.key) {
+    case "d":
+      player.velX = 0;
+      break;
+    case "a":
+      player.velX = 0;
+      break;
+  }
+});
