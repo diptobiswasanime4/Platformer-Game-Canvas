@@ -6,7 +6,17 @@ canvas.width = 500;
 
 const gravity = 0.3;
 
-let frame = 0;
+const keys = {
+  right: {
+    pressed: false,
+  },
+  left: {
+    pressed: false,
+  },
+  up: {
+    pressed: false,
+  },
+};
 
 class Player {
   constructor(color = "green") {
@@ -14,31 +24,23 @@ class Player {
     this.y = 100;
     this.velX = 0;
     this.velY = 1;
-    this.width = 0;
-    this.height = 150;
+    this.width = 30;
+    this.height = 60;
     this.color = color;
-    this.images = [];
-    this.loadImages();
   }
-  loadImages() {
-    for (let i = 1; i <= 10; i++) {
-      let image = new Image();
-      image.src = `assets/Sprites/Adventure girl/Idle (${i}).png`;
-      let aspectRatio = image.naturalWidth / image.naturalHeight;
-      this.width = this.height * aspectRatio;
-      this.images.push(image);
-    }
-  }
+
   draw() {
-    ctx.drawImage(this.images[frame], this.x, this.y, this.width, this.height);
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x, this.y, this.width, this.height);
   }
   update() {
-    if (this.y + this.height - this.velY < canvas.height) {
+    if (this.y + this.height + this.velY < canvas.height) {
       this.y += this.velY;
       this.velY += gravity;
     } else {
       this.velY = 0;
     }
+    this.x += this.velX;
     this.draw();
   }
 }
@@ -48,8 +50,47 @@ const player = new Player();
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   player.update();
-  frame = (frame + 1) % player.images.length;
+  if (keys.right.pressed) {
+    player.velX = 5;
+  } else if (keys.left.pressed) {
+    player.velX = -5;
+  } else {
+    player.velX = 0;
+  }
+  if (keys.up.pressed && player.velY == 0) {
+    player.velY = -10;
+  }
   requestAnimationFrame(animate);
 }
 
 animate();
+
+addEventListener("keydown", (e) => {
+  console.log(keys.right.pressed);
+  switch (e.key) {
+    case "d":
+      keys.right.pressed = true;
+      break;
+    case "a":
+      keys.left.pressed = true;
+      break;
+    case "w":
+      keys.up.pressed = true;
+      break;
+  }
+});
+
+addEventListener("keyup", (e) => {
+  console.log(keys.right.pressed);
+  switch (e.key) {
+    case "d":
+      keys.right.pressed = false;
+      break;
+    case "a":
+      keys.left.pressed = false;
+      break;
+    case "w":
+      keys.up.pressed = false;
+      break;
+  }
+});
