@@ -1,0 +1,9 @@
+Platform creation:
+
+1. Create tiles
+2. Drag tiles
+
+Sprite:
+
+1. Animate sprites
+2. Drag-n-drop sprites

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Platformer Maker</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <div class="top">
+        <div>Play</div>
+      </div> -->
+      <div class="container">
+        <!-- <div class="left-nav">
+          <div>Left Nav</div>
+          <br />
+          <div class="property-list">
+            <div>Terrain</div>
+            <div>Items</div>
+          </div>
+        </div> -->
+        <div class="right-container">
+          <canvas id="map-maker" width="800" height="400"></canvas>
+          <div id="selector">
+            <div class="terrain" id="grass">Grass</div>
+            <div class="terrain" id="sand">Sand</div>
+            <div class="terrain" id="water">Water</div>
+            <div id="generate-map-fn">Generate Map</div>
+            <div id="clear-map-fn">Clear Map</div>
+            <div id="export-map-fn">Export Map</div>
+            <div id="import-map-fn">Import Map</div>
+            <div id="play-game">Play</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

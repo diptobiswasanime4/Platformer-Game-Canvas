@@ -1,0 +1,50 @@
+body {
+  background-color: goldenrod;
+  font-family: "Courier New", Courier, monospace;
+  margin-top: 0;
+  margin-left: 0;
+}
+
+.top {
+  background-color: palevioletred;
+  border: 2px solid black;
+  height: 50px;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.container {
+  display: flex;
+}
+
+.left-nav {
+  background-color: green;
+  color: white;
+  border: 2px solid black;
+  margin-right: 8px;
+}
+
+#map-maker {
+  border: 2px solid black;
+  background-color: white;
+}
+
+#selector {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+  color: white;
+  background-color: brown;
+  border: 2px solid black;
+  width: 85vw;
+  height: 100px;
+}
+
+.selector > div:active {
+  color: aqua;
+}
+
+.terrain {
+  border: 2px solid white;
+  height: 20px;
+}
