@@ -6,6 +6,9 @@ const TILE_SIZE = 40;
 const GRAVITY = 0.98;
 const TERRAIN_TYPES = ["grass", "sand", "water"];
 
+let selector = "main-screen";
+let reqId;
+
 let keys = {
   left: {
     pressed: false,
@@ -18,14 +21,32 @@ let keys = {
 let mapMaker = document.getElementById("map-maker");
 let ctx = mapMaker.getContext("2d");
 
-let selector = document.getElementById("selector");
+let selectorElem = document.getElementById("selector");
 let terrain;
 
 let map;
 
-selector.addEventListener("click", (e) => {
+selectorElem.addEventListener("click", (e) => {
   terrain = e.target.id;
+  selector = e.target.id;
+  ctx.clearRect(0, 0, mapMaker.width, mapMaker.height);
+  cancelAnimationFrame(reqId);
+  init();
 });
+
+function init() {
+  if (selector == "main-screen") {
+  } else if (selector == "sprite-screen") {
+    function animate() {
+      console.log(1);
+      ctx.clearRect(0, 0, mapMaker.width, mapMaker.height);
+      reqId = requestAnimationFrame(animate);
+    }
+    animate();
+  }
+}
+
+init();
 
 function randomMap() {
   let terrainRandom;
@@ -38,7 +59,8 @@ function randomMap() {
 }
 
 function clearMap() {
-  ctx.clearRect(0, 0, 400, 400);
+  console.log("Clear Map.");
+  ctx.clearRect(0, 0, mapMaker.width, mapMaker.height);
 }
 
 document.getElementById("clear-map-fn").addEventListener("click", clearMap);
