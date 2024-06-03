@@ -1,8 +1,6 @@
-import adventurer from "../assets/sprites/adventurer.png";
-
 const GRAVITY = 0.98;
 
-export class Sprite {
+export class Player {
   constructor() {
     this.x = 100;
     this.y = 200;
@@ -10,20 +8,15 @@ export class Sprite {
     this.velY = 0;
     this.width = 50;
     this.height = 50;
-
-    // this.image = createImage(adventurer);
-    this.image = new Image();
-    this.image.src = adventurer;
   }
 
   draw(ctx) {
-    if (this.image.complete) {
-      ctx.drawImage(this.image, this.x, this.y);
-    } else {
-      this.image.onload = () => {
-        ctx.drawImage(this.image, this.x, this.y);
-      };
-    }
+    ctx.beginPath();
+    // ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.lineWidth = 2;
+    ctx.rect(this.x, this.y, this.width, this.height);
+    ctx.stroke();
+    ctx.closePath();
   }
 
   update(ctx) {
